@@ -1,7 +1,8 @@
-from expense_tracker.utils import get_number
-from expense_tracker.storage import save_expenses, load_expenses
+from utils import get_number
+from storage import save_expenses, load_expenses
 # from rich.console import Console
 # from rich.table import Table
+
 
 
 def show_menu():

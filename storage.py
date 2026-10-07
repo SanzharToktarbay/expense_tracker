@@ -1,22 +1,14 @@
+import json
+
+
 def save_expenses(expenses):
-    with open("expenses.txt", "w", encoding="utf-8") as file:
-        for expense in expenses:
-            line = f"{expense['category']};{expense['amount']};{expense['note']}\n"
-            file.write(line)
+    with open("expenses.json", "w", encoding="utf-8") as file:
+        json.dump(expenses, file, ensure_ascii=False, indent=2)
 
 
 def load_expenses():
-    expenses = []
     try:
-        with open("expenses.txt", "r", encoding="utf-8") as file:
-            for line in file:
-                parts =  line.strip().split(";")                 
-                expense = {
-                    "category": parts[0],         
-                    "amount": float(parts[1]),           
-                    "note": parts[2]              
-                }
-                expenses.append(expense)
+        with open("expenses.json", "r", encoding="utf-8") as file:
+            return json.load(file)
     except FileNotFoundError:
-        pass                                 
-    return expenses
+        return []
